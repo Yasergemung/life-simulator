@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Life Simulator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- START SCREEN -->
+    <main id="startScreen" class="screen">
+        <div class="logo">
+            LIFE<span>SIMULATOR</span>
+        </div>
+
+        <p class="subtitle">
+            Your decisions. Your life.
+        </p>
+
+        <button id="startBtn" class="main-btn">
+            ▶ START LIFE
+        </button>
+    </main>
+
+
+    <!-- CHARACTER CREATION -->
+    <main id="creationScreen" class="screen hidden">
+
+        <div class="panel">
+
+            <h1>Create Your Character</h1>
+
+            <p>Build your life from zero.</p>
+
+            <input
+                type="text"
+                id="playerName"
+                placeholder="Enter your name"
+                maxlength="20"
+            >
+
+            <input
+                type="number"
+                id="playerAge"
+                placeholder="Enter your age"
+                min="13"
+                max="100"
+            >
+
+            <select id="playerGoal">
+                <option value="">Choose your main goal</option>
+                <option value="developer">Become a Developer</option>
+                <option value="athlete">Become an Athlete</option>
+                <option value="creator">Become a Content Creator</option>
+                <option value="business">Build a Business</option>
+            </select>
+
+            <button id="createBtn" class="main-btn">
+                CREATE CHARACTER
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- GAME SCREEN -->
+    <main id="gameScreen" class="hidden">
+
+        <header class="game-header">
+
+            <div>
+                <small>PLAYER</small>
+                <h2 id="displayName">PLAYER</h2>
+            </div>
+
+            <div class="level">
+                LEVEL <span id="level">1</span>
+            </div>
+
+        </header>
+
+
+        <section class="stats">
+
+            <div class="stat">
+                <span>🧠 Intelligence</span>
+                <strong id="intelligence">50</strong>
+                <div class="bar">
+                    <div id="intelligenceBar"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                <span>💻 Skills</span>
+                <strong id="skills">50</strong>
+                <div class="bar">
+                    <div id="skillsBar"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                <span>💪 Fitness</span>
+                <strong id="fitness">50</strong>
+                <div class="bar">
+                    <div id="fitnessBar"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                <span>😊 Happiness</span>
+                <strong id="happiness">50</strong>
+                <div class="bar">
+                    <div id="happinessBar"></div>
+                </div>
+            </div>
+
+            <div class="stat">
+                <span>💰 Money</span>
+                <strong id="money">50</strong>
+                <div class="bar">
+                    <div id="moneyBar"></div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="day-panel">
+
+            <div class="day-number">
+                DAY <span id="day">1</span>
+            </div>
+
+            <h1>What will you do today?</h1>
+
+            <p>You have 6 hours of free time.</p>
+
+            <div class="actions">
+
+                <button class="action" data-action="study">
+                    📚
+                    <span>Study</span>
+                    <small>+10 Intelligence</small>
+                </button>
+
+                <button class="action" data-action="coding">
+                    💻
+                    <span>Learn Coding</span>
+                    <small>+10 Skills</small>
+                </button>
+
+                <button class="action" data-action="football">
+                    ⚽
+                    <span>Football</span>
+                    <small>+10 Fitness</small>
+                </button>
+
+                <button class="action" data-action="gaming">
+                    🎮
+                    <span>Gaming</span>
+                    <small>+10 Happiness</small>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="xp-panel">
+
+            <span>XP</span>
+
+            <strong>
+                <span id="xp">0</span> / 100
+            </strong>
+
+            <div class="xp-bar">
+                <div id="xpBar"></div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
