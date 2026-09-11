@@ -1,47 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Life Simulator - Your decisions. Your life."
+    >
 
     <title>Life Simulator</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- START SCREEN -->
-    <main id="startScreen" class="screen">
+
+    <!-- =====================================
+         START SCREEN
+    ====================================== -->
+
+    <main
+        id="startScreen"
+        class="screen"
+    >
+
         <div class="logo">
-            LIFE<span>SIMULATOR</span>
+
+            LIFE
+            <span>SIMULATOR</span>
+
         </div>
+
 
         <p class="subtitle">
             Your decisions. Your life.
         </p>
 
-        <button id="startBtn" class="main-btn">
+
+        <button
+            id="startBtn"
+            class="main-btn"
+        >
+
             ▶ START LIFE
+
         </button>
+
     </main>
 
 
-    <!-- CHARACTER CREATION -->
-    <main id="creationScreen" class="screen hidden">
+
+    <!-- =====================================
+         CHARACTER CREATION
+    ====================================== -->
+
+    <main
+        id="creationScreen"
+        class="screen hidden"
+    >
 
         <div class="panel">
 
-            <h1>Create Your Character</h1>
+            <h1>
+                Create Your Character
+            </h1>
 
-            <p>Build your life from zero.</p>
+
+            <p>
+                Your life begins here.
+            </p>
+
+
+            <!-- NAME -->
 
             <input
                 type="text"
                 id="playerName"
                 placeholder="Enter your name"
                 maxlength="20"
+                autocomplete="off"
             >
+
+
+            <!-- AGE -->
 
             <input
                 type="number"
@@ -51,16 +104,41 @@
                 max="100"
             >
 
+
+            <!-- GOAL -->
+
             <select id="playerGoal">
-                <option value="">Choose your main goal</option>
-                <option value="developer">Become a Developer</option>
-                <option value="athlete">Become an Athlete</option>
-                <option value="creator">Become a Content Creator</option>
-                <option value="business">Build a Business</option>
+
+                <option value="">
+                    Choose your main goal
+                </option>
+
+                <option value="developer">
+                    💻 Become a Developer
+                </option>
+
+                <option value="athlete">
+                    ⚽ Become an Athlete
+                </option>
+
+                <option value="creator">
+                    🎥 Become a Content Creator
+                </option>
+
+                <option value="business">
+                    💰 Build a Business
+                </option>
+
             </select>
 
-            <button id="createBtn" class="main-btn">
+
+            <button
+                id="createBtn"
+                class="main-btn"
+            >
+
                 CREATE CHARACTER
+
             </button>
 
         </div>
@@ -68,128 +146,455 @@
     </main>
 
 
-    <!-- GAME SCREEN -->
-    <main id="gameScreen" class="hidden">
+
+    <!-- =====================================
+         GAME SCREEN
+    ====================================== -->
+
+    <main
+        id="gameScreen"
+        class="hidden"
+    >
+
+
+        <!-- =================================
+             HEADER
+        ================================== -->
 
         <header class="game-header">
 
+
             <div>
-                <small>PLAYER</small>
-                <h2 id="displayName">PLAYER</h2>
+
+                <small>
+                    PLAYER
+                </small>
+
+
+                <h2 id="displayName">
+                    PLAYER
+                </h2>
+
             </div>
 
+
+
             <div class="level">
-                LEVEL <span id="level">1</span>
+
+                LEVEL
+                <span id="level">
+                    1
+                </span>
+
             </div>
+
 
         </header>
 
 
-        <section class="stats">
 
-            <div class="stat">
-                <span>🧠 Intelligence</span>
-                <strong id="intelligence">50</strong>
-                <div class="bar">
-                    <div id="intelligenceBar"></div>
-                </div>
+        <!-- =================================
+             REAL WORLD TIME
+        ================================== -->
+
+        <section class="real-time">
+
+
+            <!-- REAL DATE -->
+
+            <div>
+
+                <span id="realDate">
+                    Loading...
+                </span>
+
             </div>
 
-            <div class="stat">
-                <span>💻 Skills</span>
-                <strong id="skills">50</strong>
-                <div class="bar">
-                    <div id="skillsBar"></div>
-                </div>
+
+
+            <!-- CLOCK -->
+
+            <div class="clock">
+
+                <span id="realTime">
+                    00:00:00
+                </span>
+
             </div>
 
-            <div class="stat">
-                <span>💪 Fitness</span>
-                <strong id="fitness">50</strong>
-                <div class="bar">
-                    <div id="fitnessBar"></div>
-                </div>
+
+
+            <!-- MORNING / AFTERNOON / EVENING / NIGHT -->
+
+            <div id="timePeriod">
+
+                🌙 Night
+
             </div>
 
-            <div class="stat">
-                <span>😊 Happiness</span>
-                <strong id="happiness">50</strong>
-                <div class="bar">
-                    <div id="happinessBar"></div>
-                </div>
-            </div>
-
-            <div class="stat">
-                <span>💰 Money</span>
-                <strong id="money">50</strong>
-                <div class="bar">
-                    <div id="moneyBar"></div>
-                </div>
-            </div>
 
         </section>
 
+
+
+        <!-- =================================
+             PLAYER STATS
+        ================================== -->
+
+        <section class="stats">
+
+
+            <!-- INTELLIGENCE -->
+
+            <div class="stat">
+
+                <span>
+                    🧠 Intelligence
+                </span>
+
+
+                <strong id="intelligence">
+                    50
+                </strong>
+
+
+                <div class="bar">
+
+                    <div
+                        id="intelligenceBar"
+                        style="width: 50%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SKILLS -->
+
+            <div class="stat">
+
+                <span>
+                    💻 Skills
+                </span>
+
+
+                <strong id="skills">
+                    50
+                </strong>
+
+
+                <div class="bar">
+
+                    <div
+                        id="skillsBar"
+                        style="width: 50%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FITNESS -->
+
+            <div class="stat">
+
+                <span>
+                    💪 Fitness
+                </span>
+
+
+                <strong id="fitness">
+                    50
+                </strong>
+
+
+                <div class="bar">
+
+                    <div
+                        id="fitnessBar"
+                        style="width: 50%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- HAPPINESS -->
+
+            <div class="stat">
+
+                <span>
+                    😊 Happiness
+                </span>
+
+
+                <strong id="happiness">
+                    50
+                </strong>
+
+
+                <div class="bar">
+
+                    <div
+                        id="happinessBar"
+                        style="width: 50%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MONEY -->
+
+            <div class="stat">
+
+                <span>
+                    💰 Money
+                </span>
+
+
+                <strong id="money">
+                    50
+                </strong>
+
+
+                <div class="bar">
+
+                    <div
+                        id="moneyBar"
+                        style="width: 50%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             DAY PANEL
+        ================================== -->
 
         <section class="day-panel">
 
+
+            <!-- CURRENT DAY -->
+
             <div class="day-number">
-                DAY <span id="day">1</span>
+
+                DAY
+
+                <span id="day">
+                    1
+                </span>
+
             </div>
 
-            <h1>What will you do today?</h1>
 
-            <p>You have 6 hours of free time.</p>
+
+            <h1>
+                What will you do today?
+            </h1>
+
+
+            <p>
+                Your choices will shape your future.
+            </p>
+
+
+
+            <!-- =================================
+                 ACTIONS
+            ================================== -->
 
             <div class="actions">
 
-                <button class="action" data-action="study">
+
+                <!-- STUDY -->
+
+                <button
+                    class="action"
+                    data-action="study"
+                >
+
                     📚
-                    <span>Study</span>
-                    <small>+10 Intelligence</small>
+
+
+                    <span>
+                        Study
+                    </span>
+
+
+                    <small>
+                        +10 Intelligence
+                    </small>
+
                 </button>
 
-                <button class="action" data-action="coding">
+
+
+                <!-- CODING -->
+
+                <button
+                    class="action"
+                    data-action="coding"
+                >
+
                     💻
-                    <span>Learn Coding</span>
-                    <small>+10 Skills</small>
+
+
+                    <span>
+                        Learn Coding
+                    </span>
+
+
+                    <small>
+                        +10 Skills
+                    </small>
+
                 </button>
 
-                <button class="action" data-action="football">
+
+
+                <!-- FOOTBALL -->
+
+                <button
+                    class="action"
+                    data-action="football"
+                >
+
                     ⚽
-                    <span>Football</span>
-                    <small>+10 Fitness</small>
+
+
+                    <span>
+                        Football
+                    </span>
+
+
+                    <small>
+                        +10 Fitness
+                    </small>
+
                 </button>
 
-                <button class="action" data-action="gaming">
+
+
+                <!-- GAMING -->
+
+                <button
+                    class="action"
+                    data-action="gaming"
+                >
+
                     🎮
-                    <span>Gaming</span>
-                    <small>+10 Happiness</small>
+
+
+                    <span>
+                        Gaming
+                    </span>
+
+
+                    <small>
+                        +10 Happiness
+                    </small>
+
                 </button>
+
 
             </div>
 
+
         </section>
 
+
+
+        <!-- =================================
+             XP SYSTEM
+        ================================== -->
 
         <section class="xp-panel">
 
-            <span>XP</span>
+
+            <span>
+                ⭐ XP
+            </span>
+
 
             <strong>
-                <span id="xp">0</span> / 100
+
+                <span id="xp">
+                    0
+                </span>
+
+                / 100
+
             </strong>
 
+
             <div class="xp-bar">
-                <div id="xpBar"></div>
+
+                <div
+                    id="xpBar"
+                    style="width: 0%;"
+                ></div>
+
             </div>
 
+
         </section>
+
+
+
+        <!-- =================================
+             NEW LIFE BUTTON
+        ================================== -->
+
+        <div
+            style="
+                text-align:center;
+                margin-top:25px;
+            "
+        >
+
+            <button
+                class="main-btn"
+                onclick="resetGame()"
+                style="
+                    margin-top:0;
+                    background:#151515;
+                    border-color:#444;
+                "
+            >
+
+                🔄 NEW LIFE
+
+            </button>
+
+        </div>
+
 
     </main>
 
 
-    <!-- JAVASCRIPT -->
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
