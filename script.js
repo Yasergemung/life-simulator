@@ -1,3 +1,7 @@
+/* =========================================
+   LIFE SIMULATOR - REAL TIME SYSTEM
+========================================= */
+
 const startScreen = document.getElementById("startScreen");
 const creationScreen = document.getElementById("creationScreen");
 const gameScreen = document.getElementById("gameScreen");
@@ -8,6 +12,11 @@ const createBtn = document.getElementById("createBtn");
 const playerNameInput = document.getElementById("playerName");
 const playerAgeInput = document.getElementById("playerAge");
 const playerGoalInput = document.getElementById("playerGoal");
+
+
+/* =========================================
+   PLAYER DATA
+========================================= */
 
 let player = {
     name: "",
@@ -22,23 +31,30 @@ let player = {
     skills: 50,
     fitness: 50,
     happiness: 50,
-    money: 50
+    money: 50,
+
+    /* Real-world timestamp */
+    createdAt: null,
+    lastSeen: null
 };
 
 
-/* =========================
-   START GAME
-========================= */
+/* =========================================
+   START
+========================================= */
 
 startBtn.addEventListener("click", () => {
+
     startScreen.classList.add("hidden");
+
     creationScreen.classList.remove("hidden");
+
 });
 
 
-/* =========================
+/* =========================================
    CREATE CHARACTER
-========================= */
+========================================= */
 
 createBtn.addEventListener("click", () => {
 
@@ -61,38 +77,281 @@ createBtn.addEventListener("click", () => {
         return;
     }
 
+
     player.name = name;
     player.age = age;
     player.goal = goal;
 
+    const now = Date.now();
+
+    player.createdAt = now;
+    player.lastSeen = now;
+
     saveGame();
 
     creationScreen.classList.add("hidden");
+
     gameScreen.classList.remove("hidden");
 
     updateUI();
+
+    startRealTime();
+
 });
 
 
-/* =========================
-   ACTION BUTTONS
-========================= */
+/* =========================================
+   REAL TIME CLOCK
+========================================= */
+
+let clockStarted = false;
+
+function startRealTime() {
+
+    if (clockStarted) {
+        return;
+    }
+
+    clockStarted = true;
+
+    updateRealTime();
+
+    setInterval(updateRealTime, 1000);
+
+}
+
+
+/* =========================================
+   UPDATE REAL TIME
+========================================= */
+
+function updateRealTime() {
+
+    const now = new Date();
+
+    updateClock(now);
+
+    updateDate(now);
+
+    updatePeriod(now);
+
+    updateLifeDay(now);
+
+    player.lastSeen = Date.now();
+
+    saveGame();
+}
+
+
+/* =========================================
+   CLOCK
+========================================= */
+
+function updateClock(date) {
+
+    const hours =
+        String(date.getHours()).padStart(2, "0");
+
+    const minutes =
+        String(date.getMinutes()).padStart(2, "0");
+
+    const seconds =
+        String(date.getSeconds()).padStart(2, "0");
+
+
+    const clock =
+        document.getElementById("realTime");
+
+    if (clock) {
+
+        clock.textContent =
+            `${hours}:${minutes}:${seconds}`;
+
+    }
+
+}
+
+
+/* =========================================
+   DATE
+========================================= */
+
+function updateDate(date) {
+
+    const dateElement =
+        document.getElementById("realDate");
+
+    if (!dateElement) {
+        return;
+    }
+
+
+    const formatted =
+        date.toLocaleDateString("en-US", {
+
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+
+        });
+
+
+    dateElement.textContent = formatted;
+
+}
+
+
+/* =========================================
+   TIME PERIOD
+========================================= */
+
+function updatePeriod(date) {
+
+    const hour = date.getHours();
+
+    const period =
+        document.getElementById("timePeriod");
+
+    if (!period) {
+        return;
+    }
+
+
+    if (hour >= 5 && hour < 12) {
+
+        period.textContent =
+            "🌅 Morning";
+
+    }
+
+    else if (hour >= 12 && hour < 17) {
+
+        period.textContent =
+            "☀️ Afternoon";
+
+    }
+
+    else if (hour >= 17 && hour < 21) {
+
+        period.textContent =
+            "🌇 Evening";
+
+    }
+
+    else {
+
+        period.textContent =
+            "🌙 Night";
+
+    }
+
+}
+
+
+/* =========================================
+   REAL LIFE DAYS
+========================================= */
+
+function updateLifeDay(now) {
+
+    if (!player.createdAt) {
+        return;
+    }
+
+
+    const millisecondsPerDay =
+        24 * 60 * 60 * 1000;
+
+
+    const elapsed =
+        now - player.createdAt;
+
+
+    const realDays =
+        Math.floor(
+            elapsed / millisecondsPerDay
+        );
+
+
+    const newDay =
+        realDays + 1;
+
+
+    if (newDay > player.day) {
+
+        const daysPassed =
+            newDay - player.day;
+
+
+        player.day = newDay;
+
+
+        onNewDay(daysPassed);
+
+    }
+
+
+    const dayElement =
+        document.getElementById("day");
+
+
+    if (dayElement) {
+
+        dayElement.textContent =
+            player.day;
+
+    }
+
+}
+
+
+/* =========================================
+   NEW DAY EVENT
+========================================= */
+
+function onNewDay(daysPassed) {
+
+    gainXP(daysPassed * 10);
+
+
+    /* Small daily bonus */
+
+    player.happiness =
+        clamp(player.happiness + 1);
+
+
+    saveGame();
+
+
+    if (daysPassed === 1) {
+
+        alert(
+            `🌅 A new day has begun!\n\nDAY ${player.day}`
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   ACTION SYSTEM
+========================================= */
 
 document.querySelectorAll(".action").forEach(button => {
 
     button.addEventListener("click", () => {
 
-        const action = button.dataset.action;
+        const action =
+            button.dataset.action;
 
         performAction(action);
+
     });
 
 });
 
-
-/* =========================
-   PERFORM ACTION
-========================= */
 
 function performAction(action) {
 
@@ -128,243 +387,205 @@ function performAction(action) {
             player.skills += 2;
 
             break;
+
     }
 
 
-    /* Keep stats between 0 and 100 */
+    player.intelligence =
+        clamp(player.intelligence);
 
-    player.intelligence = clamp(player.intelligence);
-    player.skills = clamp(player.skills);
-    player.fitness = clamp(player.fitness);
-    player.happiness = clamp(player.happiness);
-    player.money = clamp(player.money);
+    player.skills =
+        clamp(player.skills);
 
+    player.fitness =
+        clamp(player.fitness);
 
-    /* Give XP */
+    player.happiness =
+        clamp(player.happiness);
+
+    player.money =
+        clamp(player.money);
+
 
     gainXP(20);
 
-
-    /* Move to next day */
-
-    nextDay();
-
-
-    /* Save progress */
-
     saveGame();
 
-
-    /* Update screen */
-
     updateUI();
+
 }
 
 
-/* =========================
-   XP SYSTEM
-========================= */
+/* =========================================
+   XP
+========================================= */
 
 function gainXP(amount) {
 
     player.xp += amount;
 
 
-    if (player.xp >= 100) {
+    while (player.xp >= 100) {
 
         player.xp -= 100;
 
         player.level++;
 
+
         alert(
             `🎉 LEVEL UP!\n\nYou reached Level ${player.level}!`
         );
+
     }
+
 }
 
 
-/* =========================
-   DAY SYSTEM
-========================= */
-
-function nextDay() {
-
-    player.day++;
-
-    randomEvent();
-}
-
-
-/* =========================
-   RANDOM EVENTS
-========================= */
-
-function randomEvent() {
-
-    const chance = Math.random();
-
-
-    /* 25% chance */
-
-    if (chance <= 0.75) {
-        return;
-    }
-
-
-    const events = [
-
-        {
-            text: "⚡ You discovered a new opportunity!",
-            money: 10
-        },
-
-        {
-            text: "🎁 Someone gave you a small reward!",
-            money: 15
-        },
-
-        {
-            text: "📚 You found a useful learning resource!",
-            intelligence: 5
-        },
-
-        {
-            text: "⚽ You had an amazing training session!",
-            fitness: 5
-        },
-
-        {
-            text: "💡 You got a brilliant idea!",
-            skills: 5
-        }
-
-    ];
-
-
-    const event =
-        events[Math.floor(Math.random() * events.length)];
-
-
-    alert(event.text);
-
-
-    if (event.money) {
-        player.money += event.money;
-    }
-
-
-    if (event.intelligence) {
-        player.intelligence += event.intelligence;
-    }
-
-
-    if (event.fitness) {
-        player.fitness += event.fitness;
-    }
-
-
-    if (event.skills) {
-        player.skills += event.skills;
-    }
-
-
-    /* Keep values valid */
-
-    player.intelligence = clamp(player.intelligence);
-    player.skills = clamp(player.skills);
-    player.fitness = clamp(player.fitness);
-    player.happiness = clamp(player.happiness);
-    player.money = clamp(player.money);
-}
-
-
-/* =========================
+/* =========================================
    UPDATE UI
-========================= */
+========================================= */
 
 function updateUI() {
 
-    document.getElementById("displayName").textContent =
-        player.name.toUpperCase();
+    const nameElement =
+        document.getElementById("displayName");
+
+    if (nameElement) {
+
+        nameElement.textContent =
+            player.name.toUpperCase();
+
+    }
 
 
-    document.getElementById("level").textContent =
-        player.level;
+    const levelElement =
+        document.getElementById("level");
+
+    if (levelElement) {
+
+        levelElement.textContent =
+            player.level;
+
+    }
 
 
-    document.getElementById("day").textContent =
-        player.day;
+    const dayElement =
+        document.getElementById("day");
+
+    if (dayElement) {
+
+        dayElement.textContent =
+            player.day;
+
+    }
 
 
-    document.getElementById("xp").textContent =
-        player.xp;
+    const xpElement =
+        document.getElementById("xp");
+
+    if (xpElement) {
+
+        xpElement.textContent =
+            player.xp;
+
+    }
 
 
     updateStat("intelligence");
-
     updateStat("skills");
-
     updateStat("fitness");
-
     updateStat("happiness");
-
     updateStat("money");
 
 
-    document.getElementById("xpBar").style.width =
-        `${player.xp}%`;
+    const xpBar =
+        document.getElementById("xpBar");
+
+    if (xpBar) {
+
+        xpBar.style.width =
+            `${player.xp}%`;
+
+    }
+
 }
 
 
-/* =========================
+/* =========================================
    UPDATE STAT
-========================= */
+========================================= */
 
 function updateStat(stat) {
 
-    const value = player[stat];
+    const value =
+        player[stat];
 
 
-    document.getElementById(stat).textContent =
-        value;
+    const number =
+        document.getElementById(stat);
+
+    const bar =
+        document.getElementById(`${stat}Bar`);
 
 
-    document.getElementById(`${stat}Bar`).style.width =
-        `${value}%`;
+    if (number) {
+
+        number.textContent =
+            value;
+
+    }
+
+
+    if (bar) {
+
+        bar.style.width =
+            `${value}%`;
+
+    }
+
 }
 
 
-/* =========================
-   SAVE GAME
-========================= */
+/* =========================================
+   SAVE
+========================================= */
 
 function saveGame() {
 
     localStorage.setItem(
+
         "lifeSimulatorSave",
+
         JSON.stringify(player)
+
     );
+
 }
 
 
-/* =========================
-   LOAD GAME
-========================= */
+/* =========================================
+   LOAD
+========================================= */
 
 function loadGame() {
 
     const saved =
-        localStorage.getItem("lifeSimulatorSave");
+        localStorage.getItem(
+            "lifeSimulatorSave"
+        );
 
 
     if (!saved) {
+
         return;
+
     }
 
 
     try {
 
-        player = JSON.parse(saved);
+        player =
+            JSON.parse(saved);
 
 
         startScreen.classList.add("hidden");
@@ -376,6 +597,9 @@ function loadGame() {
 
         updateUI();
 
+        startRealTime();
+
+
     } catch (error) {
 
         console.error(
@@ -383,27 +607,32 @@ function loadGame() {
             error
         );
 
+
         localStorage.removeItem(
             "lifeSimulatorSave"
         );
+
     }
+
 }
 
 
-/* =========================
-   RESET GAME
-========================= */
+/* =========================================
+   RESET
+========================================= */
 
 function resetGame() {
 
-    const confirmReset =
+    const confirmed =
         confirm(
-            "Are you sure you want to delete your life?"
+            "Are you sure you want to start a new life?"
         );
 
 
-    if (!confirmReset) {
+    if (!confirmed) {
+
         return;
+
     }
 
 
@@ -413,12 +642,13 @@ function resetGame() {
 
 
     location.reload();
+
 }
 
 
-/* =========================
-   CLAMP VALUE
-========================= */
+/* =========================================
+   CLAMP
+========================================= */
 
 function clamp(value) {
 
@@ -426,11 +656,12 @@ function clamp(value) {
         0,
         Math.min(100, value)
     );
+
 }
 
 
-/* =========================
-   LOAD SAVED GAME
-========================= */
+/* =========================================
+   START
+========================================= */
 
 loadGame();
