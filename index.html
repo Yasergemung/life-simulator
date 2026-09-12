@@ -3,19 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta name="description" content="Life Simulator - Your decisions. Your life.">
     <title>Life Simulator</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =========================
-     START SCREEN
-========================= -->
-
+<!-- START SCREEN -->
 <main id="startScreen" class="screen">
 
     <div class="logo">
@@ -33,19 +28,14 @@
 </main>
 
 
-<!-- =========================
-     CHARACTER CREATION
-========================= -->
-
+<!-- CHARACTER CREATION -->
 <main id="creationScreen" class="screen hidden">
 
     <div class="panel">
 
         <h1>Create Your Character</h1>
 
-        <p>
-            Your life begins here.
-        </p>
+        <p>Your life begins here.</p>
 
         <input
             type="text"
@@ -64,27 +54,11 @@
         >
 
         <select id="playerGoal">
-
-            <option value="">
-                Choose your main goal
-            </option>
-
-            <option value="developer">
-                💻 Become a Developer
-            </option>
-
-            <option value="athlete">
-                ⚽ Become an Athlete
-            </option>
-
-            <option value="creator">
-                🎥 Become a Content Creator
-            </option>
-
-            <option value="business">
-                💰 Build a Business
-            </option>
-
+            <option value="">Choose your main goal</option>
+            <option value="developer">💻 Become a Developer</option>
+            <option value="athlete">⚽ Become an Athlete</option>
+            <option value="creator">🎥 Become a Content Creator</option>
+            <option value="business">💰 Build a Business</option>
         </select>
 
         <button id="createBtn" class="main-btn">
@@ -96,54 +70,33 @@
 </main>
 
 
-<!-- =========================
-     GAME SCREEN
-========================= -->
-
+<!-- GAME -->
 <main id="gameScreen" class="hidden">
 
     <!-- HEADER -->
-
     <header class="game-header">
 
         <div>
-
             <small>PLAYER</small>
-
-            <h2 id="displayName">
-                PLAYER
-            </h2>
-
+            <h2 id="displayName">PLAYER</h2>
         </div>
 
         <div class="level">
-
-            LEVEL
-            <span id="level">
-                1
-            </span>
-
+            LEVEL <span id="level">1</span>
         </div>
 
     </header>
 
 
     <!-- REAL TIME -->
-
     <section class="real-time">
 
         <div>
-            <span id="realDate">
-                Loading...
-            </span>
+            <span id="realDate">Loading...</span>
         </div>
 
         <div class="clock">
-
-            <span id="realTime">
-                00:00:00
-            </span>
-
+            <span id="realTime">00:00:00</span>
         </div>
 
         <div id="timePeriod">
@@ -154,122 +107,65 @@
 
 
     <!-- STATS -->
-
     <section class="stats">
 
         <div class="stat">
-
-            <span>
-                🧠 Intelligence
-            </span>
-
-            <strong id="intelligence">
-                50
-            </strong>
+            <span>🧠 Intelligence</span>
+            <strong id="intelligence">50</strong>
 
             <div class="bar">
-                <div
-                    id="intelligenceBar"
-                    style="width: 50%;"
-                ></div>
+                <div id="intelligenceBar" style="width:50%;"></div>
             </div>
-
         </div>
 
 
         <div class="stat">
-
-            <span>
-                💻 Skills
-            </span>
-
-            <strong id="skills">
-                50
-            </strong>
+            <span>💻 Skills</span>
+            <strong id="skills">50</strong>
 
             <div class="bar">
-                <div
-                    id="skillsBar"
-                    style="width: 50%;"
-                ></div>
+                <div id="skillsBar" style="width:50%;"></div>
             </div>
-
         </div>
 
 
         <div class="stat">
-
-            <span>
-                💪 Fitness
-            </span>
-
-            <strong id="fitness">
-                50
-            </strong>
+            <span>💪 Fitness</span>
+            <strong id="fitness">50</strong>
 
             <div class="bar">
-                <div
-                    id="fitnessBar"
-                    style="width: 50%;"
-                ></div>
+                <div id="fitnessBar" style="width:50%;"></div>
             </div>
-
         </div>
 
 
         <div class="stat">
-
-            <span>
-                😊 Happiness
-            </span>
-
-            <strong id="happiness">
-                50
-            </strong>
+            <span>😊 Happiness</span>
+            <strong id="happiness">50</strong>
 
             <div class="bar">
-                <div
-                    id="happinessBar"
-                    style="width: 50%;"
-                ></div>
+                <div id="happinessBar" style="width:50%;"></div>
             </div>
-
         </div>
 
 
         <div class="stat">
-
-            <span>
-                💰 Money
-            </span>
-
-            <strong id="money">
-                50
-            </strong>
+            <span>💰 Money</span>
+            <strong id="money">50</strong>
 
             <div class="bar">
-                <div
-                    id="moneyBar"
-                    style="width: 50%;"
-                ></div>
+                <div id="moneyBar" style="width:50%;"></div>
             </div>
-
         </div>
 
     </section>
 
 
     <!-- DAY -->
-
     <section class="day-panel">
 
         <div class="day-number">
-
-            DAY
-            <span id="day">
-                1
-            </span>
-
+            DAY <span id="day">1</span>
         </div>
 
         <h1>
@@ -282,75 +178,28 @@
 
         <div class="actions">
 
-            <button
-                class="action"
-                data-action="study"
-            >
-
+            <button class="action" data-action="study">
                 📚
-
-                <span>
-                    Study
-                </span>
-
-                <small>
-                    +10 Intelligence
-                </small>
-
+                <span>Study</span>
+                <small>+10 Intelligence</small>
             </button>
 
-
-            <button
-                class="action"
-                data-action="coding"
-            >
-
+            <button class="action" data-action="coding">
                 💻
-
-                <span>
-                    Learn Coding
-                </span>
-
-                <small>
-                    +10 Skills
-                </small>
-
+                <span>Learn Coding</span>
+                <small>+10 Skills</small>
             </button>
 
-
-            <button
-                class="action"
-                data-action="football"
-            >
-
+            <button class="action" data-action="football">
                 ⚽
-
-                <span>
-                    Football
-                </span>
-
-                <small>
-                    +10 Fitness
-                </small>
-
+                <span>Football</span>
+                <small>+10 Fitness</small>
             </button>
 
-
-            <button
-                class="action"
-                data-action="gaming"
-            >
-
+            <button class="action" data-action="gaming">
                 🎮
-
-                <span>
-                    Gaming
-                </span>
-
-                <small>
-                    +10 Happiness
-                </small>
-
+                <span>Gaming</span>
+                <small>+10 Happiness</small>
             </button>
 
         </div>
@@ -358,39 +207,58 @@
     </section>
 
 
-    <!-- =========================
-         STUDY PLANNER
-    ========================= -->
+    <!-- CURRENT STUDY -->
+    <section class="current-study-section">
 
+        <div class="current-study-header">
+
+            <div>
+                <span class="live-dot"></span>
+                <span>STUDY STATUS</span>
+            </div>
+
+            <span id="currentStudyStatus">
+                No active session
+            </span>
+
+        </div>
+
+
+        <div id="currentStudyContent" class="current-study-content">
+
+            <div class="no-current-study">
+                📚
+                <h3>No study session right now</h3>
+                <p>Your current lesson will appear here automatically.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- STUDY PLANNER -->
     <section class="study-section">
 
         <div class="section-title">
 
             <div>
 
-                <span class="section-icon">
+                <div class="section-icon">
                     📚
-                </span>
+                </div>
 
                 <div>
-
-                    <h2>
-                        Study Planner
-                    </h2>
-
-                    <p>
-                        Organize your study week
-                    </p>
-
+                    <h2>Study Planner</h2>
+                    <p>Organize your study week</p>
                 </div>
 
             </div>
 
+
             <div class="study-score">
 
-                <small>
-                    WEEKLY PROGRESS
-                </small>
+                <small>WEEKLY PROGRESS</small>
 
                 <strong id="studyProgress">
                     0%
@@ -402,7 +270,6 @@
 
 
         <!-- ADD STUDY -->
-
         <div class="study-form">
 
             <input
@@ -414,33 +281,13 @@
 
             <select id="studyDay">
 
-                <option value="Saturday">
-                    Saturday
-                </option>
-
-                <option value="Sunday">
-                    Sunday
-                </option>
-
-                <option value="Monday">
-                    Monday
-                </option>
-
-                <option value="Tuesday">
-                    Tuesday
-                </option>
-
-                <option value="Wednesday">
-                    Wednesday
-                </option>
-
-                <option value="Thursday">
-                    Thursday
-                </option>
-
-                <option value="Friday">
-                    Friday
-                </option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
 
             </select>
 
@@ -475,62 +322,40 @@
         </div>
 
 
-        <!-- WEEK DAYS -->
-
+        <!-- DAYS -->
         <div class="week-days">
 
-            <button
-                class="week-day active"
-                data-day="Saturday"
-            >
+            <button class="week-day active" data-day="Saturday">
                 <span>Sat</span>
                 <small>السبت</small>
             </button>
 
-            <button
-                class="week-day"
-                data-day="Sunday"
-            >
+            <button class="week-day" data-day="Sunday">
                 <span>Sun</span>
                 <small>الأحد</small>
             </button>
 
-            <button
-                class="week-day"
-                data-day="Monday"
-            >
+            <button class="week-day" data-day="Monday">
                 <span>Mon</span>
                 <small>الإثنين</small>
             </button>
 
-            <button
-                class="week-day"
-                data-day="Tuesday"
-            >
+            <button class="week-day" data-day="Tuesday">
                 <span>Tue</span>
                 <small>الثلاثاء</small>
             </button>
 
-            <button
-                class="week-day"
-                data-day="Wednesday"
-            >
+            <button class="week-day" data-day="Wednesday">
                 <span>Wed</span>
                 <small>الأربعاء</small>
             </button>
 
-            <button
-                class="week-day"
-                data-day="Thursday"
-            >
+            <button class="week-day" data-day="Thursday">
                 <span>Thu</span>
                 <small>الخميس</small>
             </button>
 
-            <button
-                class="week-day"
-                data-day="Friday"
-            >
+            <button class="week-day" data-day="Friday">
                 <span>Fri</span>
                 <small>الجمعة</small>
             </button>
@@ -539,23 +364,44 @@
 
 
         <!-- STUDY LIST -->
-
-        <div
-            id="studyList"
-            class="study-list"
-        >
+        <div id="studyList" class="study-list">
 
             <div class="empty-study">
                 📖
+                <h3>No study sessions yet</h3>
+                <p>Add your first study session above.</p>
+            </div>
 
-                <h3>
-                    No study sessions yet
-                </h3>
+        </div>
 
-                <p>
-                    Add your first study session above.
-                </p>
+    </section>
 
+
+    <!-- WEEKLY SUMMARY -->
+    <section class="study-summary">
+
+        <h2>📊 Study Summary</h2>
+
+        <div class="summary-grid">
+
+            <div class="summary-card">
+                <span>Total</span>
+                <strong id="totalSessions">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Completed</span>
+                <strong id="completedSessions">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Missed</span>
+                <strong id="missedSessions">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>Remaining</span>
+                <strong id="remainingSessions">0</strong>
             </div>
 
         </div>
@@ -564,43 +410,29 @@
 
 
     <!-- XP -->
-
     <section class="xp-panel">
 
-        <span>
-            ⭐ XP
-        </span>
+        <span>⭐ XP</span>
 
         <strong>
-            <span id="xp">
-                0
-            </span>
-            / 100
+            <span id="xp">0</span> / 100
         </strong>
 
         <div class="xp-bar">
-
-            <div
-                id="xpBar"
-                style="width: 0%;"
-            ></div>
-
+            <div id="xpBar" style="width:0%;"></div>
         </div>
 
     </section>
 
 
     <!-- NEW LIFE -->
-
     <div class="new-life">
 
         <button
             class="main-btn"
             onclick="resetGame()"
         >
-
             🔄 NEW LIFE
-
         </button>
 
     </div>
