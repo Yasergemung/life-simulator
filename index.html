@@ -1,600 +1,614 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Life Simulator - Your decisions. Your life."
-    >
-
+    <meta name="description" content="Life Simulator - Your decisions. Your life.">
     <title>Life Simulator</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+<!-- =========================
+     START SCREEN
+========================= -->
 
-    <!-- =====================================
-         START SCREEN
-    ====================================== -->
+<main id="startScreen" class="screen">
 
-    <main
-        id="startScreen"
-        class="screen"
-    >
+    <div class="logo">
+        LIFE<span>SIMULATOR</span>
+    </div>
 
-        <div class="logo">
+    <p class="subtitle">
+        Your decisions. Your life.
+    </p>
 
-            LIFE
-            <span>SIMULATOR</span>
+    <button id="startBtn" class="main-btn">
+        ▶ START LIFE
+    </button>
+
+</main>
+
+
+<!-- =========================
+     CHARACTER CREATION
+========================= -->
+
+<main id="creationScreen" class="screen hidden">
+
+    <div class="panel">
+
+        <h1>Create Your Character</h1>
+
+        <p>
+            Your life begins here.
+        </p>
+
+        <input
+            type="text"
+            id="playerName"
+            placeholder="Enter your name"
+            maxlength="20"
+            autocomplete="off"
+        >
+
+        <input
+            type="number"
+            id="playerAge"
+            placeholder="Enter your age"
+            min="13"
+            max="100"
+        >
+
+        <select id="playerGoal">
+
+            <option value="">
+                Choose your main goal
+            </option>
+
+            <option value="developer">
+                💻 Become a Developer
+            </option>
+
+            <option value="athlete">
+                ⚽ Become an Athlete
+            </option>
+
+            <option value="creator">
+                🎥 Become a Content Creator
+            </option>
+
+            <option value="business">
+                💰 Build a Business
+            </option>
+
+        </select>
+
+        <button id="createBtn" class="main-btn">
+            CREATE CHARACTER
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     GAME SCREEN
+========================= -->
+
+<main id="gameScreen" class="hidden">
+
+    <!-- HEADER -->
+
+    <header class="game-header">
+
+        <div>
+
+            <small>PLAYER</small>
+
+            <h2 id="displayName">
+                PLAYER
+            </h2>
+
+        </div>
+
+        <div class="level">
+
+            LEVEL
+            <span id="level">
+                1
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- REAL TIME -->
+
+    <section class="real-time">
+
+        <div>
+            <span id="realDate">
+                Loading...
+            </span>
+        </div>
+
+        <div class="clock">
+
+            <span id="realTime">
+                00:00:00
+            </span>
+
+        </div>
+
+        <div id="timePeriod">
+            🌙 Night
+        </div>
+
+    </section>
+
+
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+
+            <span>
+                🧠 Intelligence
+            </span>
+
+            <strong id="intelligence">
+                50
+            </strong>
+
+            <div class="bar">
+                <div
+                    id="intelligenceBar"
+                    style="width: 50%;"
+                ></div>
+            </div>
 
         </div>
 
 
-        <p class="subtitle">
-            Your decisions. Your life.
+        <div class="stat">
+
+            <span>
+                💻 Skills
+            </span>
+
+            <strong id="skills">
+                50
+            </strong>
+
+            <div class="bar">
+                <div
+                    id="skillsBar"
+                    style="width: 50%;"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                💪 Fitness
+            </span>
+
+            <strong id="fitness">
+                50
+            </strong>
+
+            <div class="bar">
+                <div
+                    id="fitnessBar"
+                    style="width: 50%;"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                😊 Happiness
+            </span>
+
+            <strong id="happiness">
+                50
+            </strong>
+
+            <div class="bar">
+                <div
+                    id="happinessBar"
+                    style="width: 50%;"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <span>
+                💰 Money
+            </span>
+
+            <strong id="money">
+                50
+            </strong>
+
+            <div class="bar">
+                <div
+                    id="moneyBar"
+                    style="width: 50%;"
+                ></div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DAY -->
+
+    <section class="day-panel">
+
+        <div class="day-number">
+
+            DAY
+            <span id="day">
+                1
+            </span>
+
+        </div>
+
+        <h1>
+            What will you do today?
+        </h1>
+
+        <p>
+            Your choices will shape your future.
         </p>
 
+        <div class="actions">
 
-        <button
-            id="startBtn"
-            class="main-btn"
-        >
+            <button
+                class="action"
+                data-action="study"
+            >
 
-            ▶ START LIFE
+                📚
 
-        </button>
+                <span>
+                    Study
+                </span>
 
-    </main>
+                <small>
+                    +10 Intelligence
+                </small>
 
-
-
-    <!-- =====================================
-         CHARACTER CREATION
-    ====================================== -->
-
-    <main
-        id="creationScreen"
-        class="screen hidden"
-    >
-
-        <div class="panel">
-
-            <h1>
-                Create Your Character
-            </h1>
+            </button>
 
 
-            <p>
-                Your life begins here.
-            </p>
+            <button
+                class="action"
+                data-action="coding"
+            >
+
+                💻
+
+                <span>
+                    Learn Coding
+                </span>
+
+                <small>
+                    +10 Skills
+                </small>
+
+            </button>
 
 
-            <!-- NAME -->
+            <button
+                class="action"
+                data-action="football"
+            >
+
+                ⚽
+
+                <span>
+                    Football
+                </span>
+
+                <small>
+                    +10 Fitness
+                </small>
+
+            </button>
+
+
+            <button
+                class="action"
+                data-action="gaming"
+            >
+
+                🎮
+
+                <span>
+                    Gaming
+                </span>
+
+                <small>
+                    +10 Happiness
+                </small>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         STUDY PLANNER
+    ========================= -->
+
+    <section class="study-section">
+
+        <div class="section-title">
+
+            <div>
+
+                <span class="section-icon">
+                    📚
+                </span>
+
+                <div>
+
+                    <h2>
+                        Study Planner
+                    </h2>
+
+                    <p>
+                        Organize your study week
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="study-score">
+
+                <small>
+                    WEEKLY PROGRESS
+                </small>
+
+                <strong id="studyProgress">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADD STUDY -->
+
+        <div class="study-form">
 
             <input
                 type="text"
-                id="playerName"
-                placeholder="Enter your name"
-                maxlength="20"
-                autocomplete="off"
+                id="subjectInput"
+                placeholder="Subject e.g. Mathematics"
+                maxlength="30"
             >
 
+            <select id="studyDay">
 
-            <!-- AGE -->
-
-            <input
-                type="number"
-                id="playerAge"
-                placeholder="Enter your age"
-                min="13"
-                max="100"
-            >
-
-
-            <!-- GOAL -->
-
-            <select id="playerGoal">
-
-                <option value="">
-                    Choose your main goal
+                <option value="Saturday">
+                    Saturday
                 </option>
 
-                <option value="developer">
-                    💻 Become a Developer
+                <option value="Sunday">
+                    Sunday
                 </option>
 
-                <option value="athlete">
-                    ⚽ Become an Athlete
+                <option value="Monday">
+                    Monday
                 </option>
 
-                <option value="creator">
-                    🎥 Become a Content Creator
+                <option value="Tuesday">
+                    Tuesday
                 </option>
 
-                <option value="business">
-                    💰 Build a Business
+                <option value="Wednesday">
+                    Wednesday
+                </option>
+
+                <option value="Thursday">
+                    Thursday
+                </option>
+
+                <option value="Friday">
+                    Friday
                 </option>
 
             </select>
 
 
-            <button
-                id="createBtn"
-                class="main-btn"
+            <input
+                type="time"
+                id="studyStart"
             >
 
-                CREATE CHARACTER
 
+            <input
+                type="time"
+                id="studyEnd"
+            >
+
+
+            <input
+                type="text"
+                id="studyGoal"
+                placeholder="Goal (optional)"
+                maxlength="60"
+            >
+
+
+            <button
+                id="addStudyBtn"
+                class="main-btn study-add-btn"
+            >
+                + ADD STUDY
             </button>
 
         </div>
 
-    </main>
 
-
-
-    <!-- =====================================
-         GAME SCREEN
-    ====================================== -->
-
-    <main
-        id="gameScreen"
-        class="hidden"
-    >
-
-
-        <!-- =================================
-             HEADER
-        ================================== -->
-
-        <header class="game-header">
-
-
-            <div>
-
-                <small>
-                    PLAYER
-                </small>
-
-
-                <h2 id="displayName">
-                    PLAYER
-                </h2>
-
-            </div>
-
-
-
-            <div class="level">
-
-                LEVEL
-                <span id="level">
-                    1
-                </span>
-
-            </div>
-
-
-        </header>
-
-
-
-        <!-- =================================
-             REAL WORLD TIME
-        ================================== -->
-
-        <section class="real-time">
-
-
-            <!-- REAL DATE -->
-
-            <div>
-
-                <span id="realDate">
-                    Loading...
-                </span>
-
-            </div>
-
-
-
-            <!-- CLOCK -->
-
-            <div class="clock">
-
-                <span id="realTime">
-                    00:00:00
-                </span>
-
-            </div>
-
-
-
-            <!-- MORNING / AFTERNOON / EVENING / NIGHT -->
-
-            <div id="timePeriod">
-
-                🌙 Night
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- =================================
-             PLAYER STATS
-        ================================== -->
-
-        <section class="stats">
-
-
-            <!-- INTELLIGENCE -->
-
-            <div class="stat">
-
-                <span>
-                    🧠 Intelligence
-                </span>
-
-
-                <strong id="intelligence">
-                    50
-                </strong>
-
-
-                <div class="bar">
-
-                    <div
-                        id="intelligenceBar"
-                        style="width: 50%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- SKILLS -->
-
-            <div class="stat">
-
-                <span>
-                    💻 Skills
-                </span>
-
-
-                <strong id="skills">
-                    50
-                </strong>
-
-
-                <div class="bar">
-
-                    <div
-                        id="skillsBar"
-                        style="width: 50%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- FITNESS -->
-
-            <div class="stat">
-
-                <span>
-                    💪 Fitness
-                </span>
-
-
-                <strong id="fitness">
-                    50
-                </strong>
-
-
-                <div class="bar">
-
-                    <div
-                        id="fitnessBar"
-                        style="width: 50%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- HAPPINESS -->
-
-            <div class="stat">
-
-                <span>
-                    😊 Happiness
-                </span>
-
-
-                <strong id="happiness">
-                    50
-                </strong>
-
-
-                <div class="bar">
-
-                    <div
-                        id="happinessBar"
-                        style="width: 50%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- MONEY -->
-
-            <div class="stat">
-
-                <span>
-                    💰 Money
-                </span>
-
-
-                <strong id="money">
-                    50
-                </strong>
-
-
-                <div class="bar">
-
-                    <div
-                        id="moneyBar"
-                        style="width: 50%;"
-                    ></div>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- =================================
-             DAY PANEL
-        ================================== -->
-
-        <section class="day-panel">
-
-
-            <!-- CURRENT DAY -->
-
-            <div class="day-number">
-
-                DAY
-
-                <span id="day">
-                    1
-                </span>
-
-            </div>
-
-
-
-            <h1>
-                What will you do today?
-            </h1>
-
-
-            <p>
-                Your choices will shape your future.
-            </p>
-
-
-
-            <!-- =================================
-                 ACTIONS
-            ================================== -->
-
-            <div class="actions">
-
-
-                <!-- STUDY -->
-
-                <button
-                    class="action"
-                    data-action="study"
-                >
-
-                    📚
-
-
-                    <span>
-                        Study
-                    </span>
-
-
-                    <small>
-                        +10 Intelligence
-                    </small>
-
-                </button>
-
-
-
-                <!-- CODING -->
-
-                <button
-                    class="action"
-                    data-action="coding"
-                >
-
-                    💻
-
-
-                    <span>
-                        Learn Coding
-                    </span>
-
-
-                    <small>
-                        +10 Skills
-                    </small>
-
-                </button>
-
-
-
-                <!-- FOOTBALL -->
-
-                <button
-                    class="action"
-                    data-action="football"
-                >
-
-                    ⚽
-
-
-                    <span>
-                        Football
-                    </span>
-
-
-                    <small>
-                        +10 Fitness
-                    </small>
-
-                </button>
-
-
-
-                <!-- GAMING -->
-
-                <button
-                    class="action"
-                    data-action="gaming"
-                >
-
-                    🎮
-
-
-                    <span>
-                        Gaming
-                    </span>
-
-
-                    <small>
-                        +10 Happiness
-                    </small>
-
-                </button>
-
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- =================================
-             XP SYSTEM
-        ================================== -->
-
-        <section class="xp-panel">
-
-
-            <span>
-                ⭐ XP
-            </span>
-
-
-            <strong>
-
-                <span id="xp">
-                    0
-                </span>
-
-                / 100
-
-            </strong>
-
-
-            <div class="xp-bar">
-
-                <div
-                    id="xpBar"
-                    style="width: 0%;"
-                ></div>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- =================================
-             NEW LIFE BUTTON
-        ================================== -->
+        <!-- WEEK DAYS -->
+
+        <div class="week-days">
+
+            <button
+                class="week-day active"
+                data-day="Saturday"
+            >
+                <span>Sat</span>
+                <small>السبت</small>
+            </button>
+
+            <button
+                class="week-day"
+                data-day="Sunday"
+            >
+                <span>Sun</span>
+                <small>الأحد</small>
+            </button>
+
+            <button
+                class="week-day"
+                data-day="Monday"
+            >
+                <span>Mon</span>
+                <small>الإثنين</small>
+            </button>
+
+            <button
+                class="week-day"
+                data-day="Tuesday"
+            >
+                <span>Tue</span>
+                <small>الثلاثاء</small>
+            </button>
+
+            <button
+                class="week-day"
+                data-day="Wednesday"
+            >
+                <span>Wed</span>
+                <small>الأربعاء</small>
+            </button>
+
+            <button
+                class="week-day"
+                data-day="Thursday"
+            >
+                <span>Thu</span>
+                <small>الخميس</small>
+            </button>
+
+            <button
+                class="week-day"
+                data-day="Friday"
+            >
+                <span>Fri</span>
+                <small>الجمعة</small>
+            </button>
+
+        </div>
+
+
+        <!-- STUDY LIST -->
 
         <div
-            style="
-                text-align:center;
-                margin-top:25px;
-            "
+            id="studyList"
+            class="study-list"
         >
 
-            <button
-                class="main-btn"
-                onclick="resetGame()"
-                style="
-                    margin-top:0;
-                    background:#151515;
-                    border-color:#444;
-                "
-            >
+            <div class="empty-study">
+                📖
 
-                🔄 NEW LIFE
+                <h3>
+                    No study sessions yet
+                </h3>
 
-            </button>
+                <p>
+                    Add your first study session above.
+                </p>
+
+            </div>
 
         </div>
 
-
-    </main>
-
+    </section>
 
 
-    <!-- =====================================
-         JAVASCRIPT
-    ====================================== -->
+    <!-- XP -->
 
-    <script src="script.js"></script>
+    <section class="xp-panel">
 
+        <span>
+            ⭐ XP
+        </span>
+
+        <strong>
+            <span id="xp">
+                0
+            </span>
+            / 100
+        </strong>
+
+        <div class="xp-bar">
+
+            <div
+                id="xpBar"
+                style="width: 0%;"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEW LIFE -->
+
+    <div class="new-life">
+
+        <button
+            class="main-btn"
+            onclick="resetGame()"
+        >
+
+            🔄 NEW LIFE
+
+        </button>
+
+    </div>
+
+</main>
+
+
+<script src="script.js"></script>
 
 </body>
-
 </html>
